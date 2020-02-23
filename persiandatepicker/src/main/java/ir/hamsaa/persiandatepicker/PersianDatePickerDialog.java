@@ -48,7 +48,7 @@ public class PersianDatePickerDialog {
     private int minYear = 0;
     private PersianCalendar initDate = new PersianCalendar();
     private PersianCalendar pCalendar;
-    public static Typeface typeFace;
+    public static Typeface typeFace,buttonTypeFace;
     private String todayButtonString = "امروز";
     private boolean todayButtonVisibility = false;
     private int backgroundColor = Color.WHITE;
@@ -61,6 +61,7 @@ public class PersianDatePickerDialog {
     private int buttonCornerRadius;
     private int primaryButtonColor,secondaryButtonColor;
     private int primaryButtonTextColor,secondaryButtonTextColor;
+    private int buttonTextSize;
     private boolean showInBottomSheet;
 
     public PersianDatePickerDialog(Context context) {
@@ -90,8 +91,14 @@ public class PersianDatePickerDialog {
         return this;
     }
 
-    public PersianDatePickerDialog setTypeFace(Typeface typeFace) {
+    public PersianDatePickerDialog setTypeFace(Typeface typeFace,Typeface buttonTypeface) {
         this.typeFace = typeFace;
+        this.buttonTypeFace=buttonTypeface;
+        return this;
+    }
+
+    public PersianDatePickerDialog setTypeFace(int buttonTextSize) {
+        this.buttonTextSize = buttonTextSize;
         return this;
     }
 
@@ -190,7 +197,6 @@ public class PersianDatePickerDialog {
         final PersianDatePicker datePicker = v.findViewById(R.id.datePicker);
         final TextView dateText = v.findViewById(R.id.dateText);
         final com.google.android.material.button.MaterialButton positiveButton = v.findViewById(R.id.positive_button);
-        final com.google.android.material.button.MaterialButton negativeButton = v.findViewById(R.id.negative_button);
         final com.google.android.material.button.MaterialButton todayButton = v.findViewById(R.id.today_button);
         final LinearLayout container = v.findViewById(R.id.container);
 
@@ -233,27 +239,30 @@ public class PersianDatePickerDialog {
 
         if (typeFace != null) {
             dateText.setTypeface(typeFace);
-            positiveButton.setTypeface(typeFace);
-            negativeButton.setTypeface(typeFace);
-            todayButton.setTypeface(typeFace);
             datePicker.setTypeFace(typeFace);
         }
 
+        if (buttonTypeFace!=null){
+            positiveButton.setTypeface(buttonTypeFace);
+            todayButton.setTypeface(buttonTypeFace);
+        }
+
         positiveButton.setCornerRadius(buttonCornerRadius);
-        negativeButton.setCornerRadius(buttonCornerRadius);
         todayButton.setCornerRadius(buttonCornerRadius);
 
         positiveButton.setBackgroundTintList(ContextCompat.getColorStateList(context,primaryButtonColor));
-        negativeButton.setBackgroundTintList(ContextCompat.getColorStateList(context,secondaryButtonColor));
         todayButton.setBackgroundTintList(ContextCompat.getColorStateList(context,secondaryButtonColor));
 
         positiveButton.setTextColor(ContextCompat.getColorStateList(context,primaryButtonTextColor));
-        negativeButton.setTextColor(ContextCompat.getColorStateList(context,secondaryButtonTextColor));
         todayButton.setTextColor(ContextCompat.getColorStateList(context,secondaryButtonTextColor));
 
         positiveButton.setText(positiveButtonString);
-        negativeButton.setText(negativeButtonString);
         todayButton.setText(todayButtonString);
+
+        if (buttonTextSize!=0){
+            positiveButton.setTextSize(buttonTextSize);
+            todayButton.setTextSize(buttonTextSize);
+        }
 
         if (todayButtonVisibility) {
             todayButton.setVisibility(View.VISIBLE);
@@ -284,15 +293,6 @@ public class PersianDatePickerDialog {
                     .create();
         }
 
-        negativeButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if (listener != null) {
-                    listener.onDismissed();
-                }
-                dialog.dismiss();
-            }
-        });
 
         positiveButton.setOnClickListener(new View.OnClickListener() {
             @Override

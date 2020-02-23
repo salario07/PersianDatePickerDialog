@@ -35,23 +35,6 @@
         android:paddingRight="4dp">
 
 
-
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/negative_button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="2dp"
-            android:background="@drawable/touchable_background"
-            android:padding="6dp"
-            android:layout_margin="8dp"
-            android:textSize="12sp"
-            tools:text="cancel" />
-
-        <View
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:layout_weight="1" />
-
         <com.google.android.material.button.MaterialButton
             android:id="@+id/today_button"
             android:layout_width="wrap_content"
@@ -66,7 +49,7 @@
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/positive_button"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:padding="6dp"
             android:minWidth="120dp"
