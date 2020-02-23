@@ -51,7 +51,6 @@ public class PersianDatePickerDialog {
     public static Typeface typeFace;
     private String todayButtonString = "امروز";
     private boolean todayButtonVisibility = false;
-    private int actionColor = Color.GRAY;
     private int backgroundColor = Color.WHITE;
     private int titleColor = Color.parseColor("#111111");
     private boolean cancelable = true;
@@ -59,6 +58,9 @@ public class PersianDatePickerDialog {
     private int pickerBackgroundColor;
     private int pickerBackgroundDrawable;
     private int titleType = 0;
+    private int buttonCornerRadius;
+    private int primaryButtonColor,secondaryButtonColor;
+    private int primaryButtonTextColor,secondaryButtonTextColor;
     private boolean showInBottomSheet;
 
     public PersianDatePickerDialog(Context context) {
@@ -70,9 +72,21 @@ public class PersianDatePickerDialog {
         return this;
     }
 
-
     public PersianDatePickerDialog setMaxYear(int maxYear) {
         this.maxYear = maxYear;
+        return this;
+    }
+
+    public PersianDatePickerDialog setButtonCornerRadius(int buttonCornerRadius) {
+        this.buttonCornerRadius = buttonCornerRadius;
+        return this;
+    }
+
+    public PersianDatePickerDialog setButtonColor(int primaryButtonColor,int secondaryButtonColor,int primaryButtonTextColor,int secondaryButtonTextColor) {
+        this.primaryButtonColor=primaryButtonColor;
+        this.secondaryButtonColor=secondaryButtonColor;
+        this.primaryButtonTextColor=primaryButtonTextColor;
+        this.secondaryButtonTextColor=secondaryButtonTextColor;
         return this;
     }
 
@@ -132,15 +146,6 @@ public class PersianDatePickerDialog {
         return this;
     }
 
-    public PersianDatePickerDialog setActionTextColor(@ColorInt int colorInt) {
-        this.actionColor = colorInt;
-        return this;
-    }
-
-    public PersianDatePickerDialog setActionTextColorResource(@ColorRes int colorInt) {
-        this.actionColor = ContextCompat.getColor(context, colorInt);
-        return this;
-    }
 
     public PersianDatePickerDialog setCancelable(boolean cancelable) {
         this.cancelable = cancelable;
@@ -184,9 +189,9 @@ public class PersianDatePickerDialog {
         View v = View.inflate(context, R.layout.dialog_picker, null);
         final PersianDatePicker datePicker = v.findViewById(R.id.datePicker);
         final TextView dateText = v.findViewById(R.id.dateText);
-        final AppCompatButton positiveButton = v.findViewById(R.id.positive_button);
-        final AppCompatButton negativeButton = v.findViewById(R.id.negative_button);
-        final AppCompatButton todayButton = v.findViewById(R.id.today_button);
+        final com.google.android.material.button.MaterialButton positiveButton = v.findViewById(R.id.positive_button);
+        final com.google.android.material.button.MaterialButton negativeButton = v.findViewById(R.id.negative_button);
+        final com.google.android.material.button.MaterialButton todayButton = v.findViewById(R.id.today_button);
         final LinearLayout container = v.findViewById(R.id.container);
 
         container.setBackgroundColor(backgroundColor);
@@ -234,9 +239,17 @@ public class PersianDatePickerDialog {
             datePicker.setTypeFace(typeFace);
         }
 
-        positiveButton.setTextColor(actionColor);
-        negativeButton.setTextColor(actionColor);
-        todayButton.setTextColor(actionColor);
+        positiveButton.setCornerRadius(buttonCornerRadius);
+        negativeButton.setCornerRadius(buttonCornerRadius);
+        todayButton.setCornerRadius(buttonCornerRadius);
+
+        positiveButton.setBackgroundTintList(ContextCompat.getColorStateList(context,primaryButtonColor));
+        negativeButton.setBackgroundTintList(ContextCompat.getColorStateList(context,secondaryButtonColor));
+        todayButton.setBackgroundTintList(ContextCompat.getColorStateList(context,secondaryButtonColor));
+
+        positiveButton.setTextColor(ContextCompat.getColorStateList(context,primaryButtonTextColor));
+        negativeButton.setTextColor(ContextCompat.getColorStateList(context,secondaryButtonTextColor));
+        todayButton.setTextColor(ContextCompat.getColorStateList(context,secondaryButtonTextColor));
 
         positiveButton.setText(positiveButtonString);
         negativeButton.setText(negativeButtonString);

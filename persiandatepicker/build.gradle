@@ -2,7 +2,6 @@ apply plugin: 'com.android.library'
 
 android {
     compileSdkVersion 29
-    buildToolsVersion '27.0.3'
 
     defaultConfig {
         minSdkVersion 14
@@ -21,4 +20,6 @@ android {
 dependencies {
     api 'androidx.appcompat:appcompat:1.1.0'
     implementation 'com.google.android.material:material:1.1.0-beta01'
+
+    implementation 'cn.aigestudio.wheelpicker:WheelPicker:1.1.3'
 }
