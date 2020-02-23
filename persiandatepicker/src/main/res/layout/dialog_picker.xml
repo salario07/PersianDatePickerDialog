@@ -39,23 +39,23 @@
             android:id="@+id/today_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="@drawable/touchable_background"
-            android:padding="6dp"
             android:textSize="12sp"
             android:visibility="gone"
             android:layout_margin="8dp"
             tools:text="today"
+            android:insetTop="2dp"
+            android:insetBottom="2dp"
             tools:visibility="visible" />
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/positive_button"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="6dp"
-            android:minWidth="120dp"
             android:gravity="center"
             android:layout_margin="8dp"
             android:textSize="12sp"
+            android:insetTop="2dp"
+            android:insetBottom="2dp"
             tools:text="ok" />
 
     </LinearLayout>

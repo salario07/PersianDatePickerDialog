@@ -1,6 +1,5 @@
 package ir.hamsaa.persiandatepicker;
 
-import android.app.Dialog;
 import android.content.Context;
 import android.graphics.Color;
 import android.graphics.Typeface;
@@ -8,17 +7,13 @@ import android.os.Build;
 import android.util.Log;
 import android.view.View;
 import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import androidx.annotation.ColorInt;
-import androidx.annotation.ColorRes;
 import androidx.annotation.DrawableRes;
-import androidx.annotation.RequiresApi;
 import androidx.annotation.StringRes;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatDialog;
-import androidx.appcompat.widget.AppCompatButton;
 import androidx.core.content.ContextCompat;
 
 
@@ -59,7 +54,7 @@ public class PersianDatePickerDialog {
     private int pickerBackgroundDrawable;
     private int titleType = 0;
     private int buttonCornerRadius;
-    private int primaryButtonColor,secondaryButtonColor;
+    private int primaryButtonColor,secondaryButtonColor,primaryRippleColor, secondaryRippleColor;
     private int primaryButtonTextColor,secondaryButtonTextColor;
     private int buttonTextSize;
     private boolean showInBottomSheet;
@@ -83,11 +78,13 @@ public class PersianDatePickerDialog {
         return this;
     }
 
-    public PersianDatePickerDialog setButtonColor(int primaryButtonColor,int secondaryButtonColor,int primaryButtonTextColor,int secondaryButtonTextColor) {
+    public PersianDatePickerDialog setButtonColor(int primaryButtonColor,int secondaryButtonColor,int primaryButtonTextColor,int secondaryButtonTextColor,int primaryRippleColor,int secondaryRippleColor) {
         this.primaryButtonColor=primaryButtonColor;
         this.secondaryButtonColor=secondaryButtonColor;
         this.primaryButtonTextColor=primaryButtonTextColor;
         this.secondaryButtonTextColor=secondaryButtonTextColor;
+        this.primaryRippleColor=primaryRippleColor;
+        this.secondaryRippleColor =secondaryRippleColor;
         return this;
     }
 
@@ -97,7 +94,7 @@ public class PersianDatePickerDialog {
         return this;
     }
 
-    public PersianDatePickerDialog setTypeFace(int buttonTextSize) {
+    public PersianDatePickerDialog setButtonTextSize(int buttonTextSize) {
         this.buttonTextSize = buttonTextSize;
         return this;
     }
@@ -255,6 +252,11 @@ public class PersianDatePickerDialog {
 
         positiveButton.setTextColor(ContextCompat.getColorStateList(context,primaryButtonTextColor));
         todayButton.setTextColor(ContextCompat.getColorStateList(context,secondaryButtonTextColor));
+
+        if (primaryRippleColor!=0 && secondaryRippleColor!=0){
+            positiveButton.setRippleColor(ContextCompat.getColorStateList(context,primaryRippleColor));
+            todayButton.setRippleColor(ContextCompat.getColorStateList(context,secondaryRippleColor));
+        }
 
         positiveButton.setText(positiveButtonString);
         todayButton.setText(todayButtonString);
