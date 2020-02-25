@@ -3,6 +3,7 @@ package ir.hamsaa.persiandatepicker;
 import android.content.Context;
 import android.graphics.Color;
 import android.graphics.Typeface;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Build;
 import android.util.Log;
 import android.view.View;
@@ -37,7 +38,6 @@ public class PersianDatePickerDialog {
 
     private Context context;
     private String positiveButtonString = "تایید";
-    private String negativeButtonString = "انصراف";
     private Listener listener;
     private int maxYear = 0;
     private int minYear = 0;
@@ -136,17 +136,6 @@ public class PersianDatePickerDialog {
 
     public PersianDatePickerDialog setTodayButtonResource(@StringRes int todayButton) {
         this.todayButtonString = context.getString(todayButton);
-        return this;
-    }
-
-
-    public PersianDatePickerDialog setNegativeButton(String negativeButton) {
-        this.negativeButtonString = negativeButton;
-        return this;
-    }
-
-    public PersianDatePickerDialog setNegativeButtonResource(@StringRes int negativeButton) {
-        this.negativeButtonString = context.getString(negativeButton);
         return this;
     }
 
@@ -286,6 +275,11 @@ public class PersianDatePickerDialog {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP && showInBottomSheet) {
             dialog = new BottomSheetDialog(context);
             dialog.setContentView(v);
+
+            if (dialog.getWindow() != null) {
+                dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+            }
+
             dialog.setCancelable(cancelable);
             dialog.create();
         } else {
