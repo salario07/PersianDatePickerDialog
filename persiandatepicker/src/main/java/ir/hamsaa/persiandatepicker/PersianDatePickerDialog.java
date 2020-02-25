@@ -45,6 +45,7 @@ public class PersianDatePickerDialog {
     private PersianCalendar pCalendar;
     public static Typeface typeFace,buttonTypeFace;
     private String todayButtonString = "امروز";
+    private String negativeButtonString = "لغو";
     private boolean todayButtonVisibility = false;
     private int backgroundColor = Color.WHITE;
     private int titleColor = Color.parseColor("#111111");
@@ -134,6 +135,11 @@ public class PersianDatePickerDialog {
         return this;
     }
 
+    public PersianDatePickerDialog setNegativeButton(String negativeButton) {
+        this.negativeButtonString = negativeButton;
+        return this;
+    }
+
     public PersianDatePickerDialog setTodayButtonResource(@StringRes int todayButton) {
         this.todayButtonString = context.getString(todayButton);
         return this;
@@ -184,6 +190,7 @@ public class PersianDatePickerDialog {
         final TextView dateText = v.findViewById(R.id.dateText);
         final com.google.android.material.button.MaterialButton positiveButton = v.findViewById(R.id.positive_button);
         final com.google.android.material.button.MaterialButton todayButton = v.findViewById(R.id.today_button);
+        final com.google.android.material.button.MaterialButton negativeButton = v.findViewById(R.id.negative_button);
         final LinearLayout container = v.findViewById(R.id.container);
 
         container.setBackgroundColor(backgroundColor);
@@ -231,28 +238,35 @@ public class PersianDatePickerDialog {
         if (buttonTypeFace!=null){
             positiveButton.setTypeface(buttonTypeFace);
             todayButton.setTypeface(buttonTypeFace);
+            negativeButton.setTypeface(buttonTypeFace);
         }
 
         positiveButton.setCornerRadius(buttonCornerRadius);
         todayButton.setCornerRadius(buttonCornerRadius);
+        negativeButton.setCornerRadius(buttonCornerRadius);
 
         positiveButton.setBackgroundTintList(ContextCompat.getColorStateList(context,primaryButtonColor));
         todayButton.setBackgroundTintList(ContextCompat.getColorStateList(context,secondaryButtonColor));
+        negativeButton.setBackgroundTintList(ContextCompat.getColorStateList(context,secondaryButtonColor));
 
         positiveButton.setTextColor(ContextCompat.getColorStateList(context,primaryButtonTextColor));
         todayButton.setTextColor(ContextCompat.getColorStateList(context,secondaryButtonTextColor));
+        negativeButton.setTextColor(ContextCompat.getColorStateList(context,secondaryButtonTextColor));
 
         if (primaryRippleColor!=0 && secondaryRippleColor!=0){
             positiveButton.setRippleColor(ContextCompat.getColorStateList(context,primaryRippleColor));
             todayButton.setRippleColor(ContextCompat.getColorStateList(context,secondaryRippleColor));
+            negativeButton.setRippleColor(ContextCompat.getColorStateList(context,secondaryRippleColor));
         }
 
         positiveButton.setText(positiveButtonString);
         todayButton.setText(todayButtonString);
+        negativeButton.setText(negativeButtonString);
 
         if (buttonTextSize!=0){
             positiveButton.setTextSize(buttonTextSize);
             todayButton.setTextSize(buttonTextSize);
+            negativeButton.setTextSize(buttonTextSize);
         }
 
         if (todayButtonVisibility) {
