@@ -32,14 +32,14 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
         android:orientation="horizontal"
-        android:paddingLeft="4dp"
-        android:paddingRight="4dp">
+        android:paddingLeft="8dp"
+        android:clipToPadding="false"
+        android:paddingRight="8dp">
 
         <FrameLayout
             android:id="@+id/frame_cancel"
             android:layout_alignParentLeft="true"
             android:layout_width="wrap_content"
-            android:layout_marginLeft="8dp"
             android:layout_height="wrap_content">
 
             <com.google.android.material.button.MaterialButton
@@ -58,9 +58,6 @@
 
         </FrameLayout>
 
-
-
-
         <com.google.android.material.button.MaterialButton
             android:id="@+id/positive_button"
             android:layout_toRightOf="@id/frame_cancel"
@@ -78,7 +75,6 @@
             android:id="@+id/frame_today"
             android:layout_alignParentRight="true"
             android:layout_width="wrap_content"
-            android:layout_marginRight="8dp"
             android:layout_height="wrap_content">
 
             <com.google.android.material.button.MaterialButton
