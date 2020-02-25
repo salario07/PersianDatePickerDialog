@@ -33,16 +33,14 @@ public class MainActivity extends AppCompatActivity {
 
         picker = new PersianDatePickerDialog(this)
                 .setPositiveButtonString("باشه")
-                .setNegativeButton("بیخیال")
                 .setTodayButton("امروز")
                 .setTodayButtonVisible(true)
                 .setMinYear(1300)
                 .setMaxYear(PersianDatePickerDialog.THIS_YEAR)
                 .setInitDate(initDate)
-                .setActionTextColor(Color.GRAY)
-                .setTypeFace(typeface)
+                .setTypeFace(typeface,typeface)
                 .setTitleType(PersianDatePickerDialog.WEEKDAY_DAY_MONTH_YEAR)
-                .setShowInBottomSheet(false)
+                .setShowInBottomSheet(true)
                 .setListener(new Listener() {
                     @Override
                     public void onDateSelected(PersianCalendar persianCalendar) {
@@ -66,18 +64,16 @@ public class MainActivity extends AppCompatActivity {
 
         picker = new PersianDatePickerDialog(this)
                 .setPositiveButtonString("باشه")
-                .setNegativeButton("بیخیال")
                 .setTodayButton("امروز")
                 .setTodayButtonVisible(true)
                 .setMinYear(1300)
                 .setMaxYear(PersianDatePickerDialog.THIS_YEAR)
                 .setInitDate(initDate)
-                .setActionTextColor(Color.GRAY)
-                .setTypeFace(typeface)
+                .setTypeFace(typeface,typeface)
                 .setBackgroundColor(Color.BLACK)
                 .setTitleColor(Color.WHITE)
-                .setActionTextColor(Color.WHITE)
                 .setPickerBackgroundDrawable(R.drawable.darkmode_bg)
+                .setShowInBottomSheet(true)
                 .setTitleType(PersianDatePickerDialog.DAY_MONTH_YEAR)
                 .setCancelable(false)
                 .setListener(new Listener() {
